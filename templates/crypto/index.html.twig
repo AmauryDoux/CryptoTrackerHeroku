@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Crypto Tracker{% endblock %}
+
+{% block stylesheets %}
+    <link href="{{ asset('css/index.css') }}" type="text/css" rel="stylesheet" />
+{% endblock %}
+
+{% block body %}
+
+
+<div class="navigation-wrapper">
+    <ul id="navigation">
+        <li><a href="/public/crypto/add"><i class="menu-icon fas fa-plus"></i></a></li>
+        <li><a href="/public/crypto/delete"><i class="menu-icon fas fa-pen"></i></a></li>
+        <li><div class="title">Crypto Tracker</div></li>
+    </ul>
+</div>
+<br>
+
+<div class="main-wrapper">
+    <div class="title-container">
+        <h2><a class="balance" href="/public/crypto/evolution">
+            {% if totalWallet > 0 %}
+                +
+            {% else %}
+                -
+            {% endif %}
+            {{ totalWallet }}€
+        </a></h2>
+    </div>
+    <div class="cryptoContainer">
+        <ul>
+        {% for crypto in cryptos %}
+        {# {{ dump(crypto) }} #}
+            <li class="crypto">
+                <img class="crypto-img" src="{{crypto.logo}}"/>
+                <span class="crypto-accro">{{crypto.symbol}}</span>
+                <span class="crypto-name">({{crypto.name}})</span>
+                <span class="crypto-profitability">
+                    {% for i in range(1, crypto.arrows) %}
+                        {% set class = (crypto.negative)?'red-carret':'green-carret' %}
+                        <i class="{{ class }} fas fa-caret-up"></i>
+                    {% endfor %}
+                </span>
+            </li>
+        {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock %}

@@ -1,3 +1,23 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
+homepage:
+    path: /
+    controller: App\Controller\CryptoController::index
+    
+test:
+    path: /test
+    controller: App\Controller\CryptoController::indexTest
+
+crypto.add:
+    path: /crypto/add
+    controller: App\Controller\CryptoController::add
+
+crypto.delete:
+    path: /crypto/delete
+    controller: App\Controller\CryptoController::delete
+
+crypto.evolution:
+    path: /crypto/evolution
+    controller: App\Controller\CryptoController::evolution
+
+crypto.cron:
+    path: /cron
+    controller: App\Controller\CryptoController::cron

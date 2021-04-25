@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Crypto Tracker{% endblock %}
+
+{% block stylesheets %}
+   <link href="{{ asset('css/add.css') }}" type="text/css" rel="stylesheet" />
+{% endblock %}
+
+{% block body %}
+
+
+<div class="navigation-wrapper">
+    <ul id="navigation">
+        <li><a href="/public/"><i class="close-icon fas fa-times"></i></i></a></li>
+        <li><span class="title">Ajouter une transaction</span></li>
+    </ul>
+</div>
+<br>
+{{ form_start(form) }}
+{# {{form(form)}} #}
+<div class="main-wrapper">
+    <div class="inputContainer">
+        <i class="fas fa-search icon"> </i>
+        {{ form_widget(form.cryptos) }}
+    </div>
+    <div class="inputContainer">
+        <i class="fas fa-coins icon"> </i>
+        {{ form_widget(form.quantity) }}
+    </div>
+    <div class="inputContainer">
+        <i class="fas fa-euro-sign icon"> </i>
+        {{ form_widget(form.price) }}
+    </div>
+    {{ form_widget(form.submit) }}
+</div>
+{{ form_end(form) }}
+{% endblock %}

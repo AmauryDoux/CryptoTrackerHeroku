@@ -1,0 +1,74 @@
+@font-face {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Montserrat-Regular'), url(fonts/montserrat.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+
+html {
+    background: #100F0F;
+    font-family: 'Montserrat';
+}
+body {
+    text-align: center;
+}
+.navigation-wrapper { 
+    border-bottom: 1px solid #5A5959;
+    margin-top: 20px;
+    padding-bottom: 20px;
+}
+ul {
+    padding: 0;
+}
+#navigation li {
+    display: inline;
+}
+.title {
+    font-size: 35px;
+    font-weight: bold;
+    color: white;
+}
+.main-wrapper {
+    margin-top: 100px;
+    display: inline-block;
+}
+.addCryptoBtn {
+    width: 200px;
+    height: 50px;
+    background: #585757;
+    border-radius: 4px;
+    border-width: 0px;
+    position: fixed;
+    bottom: 50px;
+    transform: translate(-50%, -50%);
+    font-size: 25px;
+    font-weight: bold;
+}
+.close-icon {
+    color: white;
+    float: left;
+}
+.inputContainer i {
+    position: absolute;
+}
+.inputContainer {
+    height: 50px;
+    margin-bottom: 30px;
+}
+.icon {
+    padding: 15px;
+    color: #DBDBDB;
+    text-align: left;
+}
+.fieldClass {
+    width: 100%;
+    padding: 10px;
+    font-size: 20px;
+    background: #100F0F;
+    color: #DBDBDB;
+    border: 1px solid #DBDBDB;
+    border-radius: 4px;
+    padding-left: 40px;
+    box-sizing: border-box;  
+}

@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Crypto Tracker{% endblock %}
+
+{% block stylesheets %}
+    <link href="{{ asset('css/evolution.css') }}" type="text/css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.css" integrity="sha512-C7hOmCgGzihKXzyPU/z4nv97W0d9bv4ALuuEbSf6hm93myico9qa0hv4dODThvCsqQUmKmLcJmlpRmCaApr83g==" crossorigin="anonymous" />
+{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('app') }}
+{% endblock %}
+
+{% block body %}
+    <div class="navigation-wrapper">
+        <ul id="navigation">
+            <li><a href="/public/"><i class="close-icon fas fa-times"></i></i></a></li>
+            <li><span class="title">Vos gains</span></li>
+        </ul>
+    </div>
+    <br>
+    {{ render_chart(chart) }}
+{% endblock %}
+
