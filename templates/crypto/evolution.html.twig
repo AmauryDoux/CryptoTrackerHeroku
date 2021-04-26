@@ -14,11 +14,13 @@
 {% block body %}
     <div class="navigation-wrapper">
         <ul id="navigation">
-            <li><a href="/public/"><i class="close-icon fas fa-times"></i></i></a></li>
+            <li><a href="/"><i class="close-icon fas fa-times"></i></i></a></li>
             <li><span class="title">Vos gains</span></li>
         </ul>
     </div>
     <br>
-    {{ render_chart(chart) }}
+    <div class="main-wrapper">
+        {{ render_chart(chart, {'class': 'chart'}) }}
+    </div>
 {% endblock %}
 
