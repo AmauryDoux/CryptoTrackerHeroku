@@ -46,6 +46,10 @@ ul {
     margin-top: 100px;
     display: inline-block;
 }
+.main-wrapper canvas{
+    width: 700px;
+
+}
 .addCryptoBtn {
     width: 200px;
     height: 50px;

@@ -85,7 +85,9 @@ class HttpClientService
             [
                 'headers' => [
                     'Content-Type' => 'text/plain',
-                    'X-CMC_PRO_API_KEY' => '1cbb9a8a-7e08-4629-bccf-aa6aa8541920'
+                    // amaury.doux@gmail
+                    // 'X-CMC_PRO_API_KEY' => '1cbb9a8a-7e08-4629-bccf-aa6aa8541920'
+                    'X-CMC_PRO_API_KEY' => '7be821ba-bce3-4399-8f02-a04bdd1bc996'
                 ],
                 'query' => [
                     'id' => $id,
