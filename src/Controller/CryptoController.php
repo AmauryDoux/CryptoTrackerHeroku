@@ -43,16 +43,28 @@ class CryptoController extends AbstractController
      */
     public function evolution(ChartBuilderInterface $chart_builder) 
     {
-      
+        $labels = [];
+        $balances = [];
+        $datas = $this->dbService->getAllHistoryEntry();
+
+        foreach($datas as $data) {
+            $newDate = gmdate("d-m-Y", $data['date']);
+            array_push($labels, $newDate);
+        }
+        
+        foreach($datas as $balance) {
+            array_push($balances, $balance['balance']);
+        }
+        
         $chart = $chart_builder->createChart(Chart::TYPE_LINE);
         $chart->setData([
-            'labels' => ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+            'labels' => $labels,
             'datasets' => [
                 [
-                    'label' => 'My First dataset',
-                    'backgroundColor' => 'rgb(255, 99, 132)',
-                    'borderColor' => 'rgb(255, 99, 132)',
-                    'data' => [0, 10, 5, 2, 20, 30, 45],
+                    'label' => 'Valeur investissement en €',
+                    'backgroundColor' => 'rgb(80, 215, 255)',
+                    'borderColor' => 'rgb(80, 215, 255)',
+                    'data' => $balances,
                 ],
             ],
         ]);
@@ -60,11 +72,10 @@ class CryptoController extends AbstractController
         $chart->setOptions([
             'scales' => [
                 'yAxes' => [
-                    ['ticks' => ['min' => 0, 'max' => 100]],
+                    ['ticks' => ['min' => 0, 'max' => 50000]],
                 ],
             ],
         ]);
-        // dump($chart_builder); die;
         
         return $this->render('/crypto/evolution.html.twig', [
             'chart' => $chart,
@@ -120,6 +131,7 @@ class CryptoController extends AbstractController
      */
     public function add(Request $request): Response
     {
+        $validMessage = '';
         $addForm = new AddCryptoForm($this->client);
         $form = $this->createForm(AddCryptoForm::class, $addForm, [
             'action' => $this->generateUrl('crypto.add'),
@@ -135,10 +147,12 @@ class CryptoController extends AbstractController
                 $form->get('quantity')->getData(),
                 $form->get('price')->getData()
             );
+            $validMessage = 'Votre devise a bien été ajoutée';
         }
 
         return $this->render('/crypto/addCrypto.html.twig',[
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'valid_message' => $validMessage
         ]);
     }
 
@@ -146,6 +160,7 @@ class CryptoController extends AbstractController
      * 
      */
     public function delete(Request $request): Response {
+        $validMessage = '';
         $deleteForm = new DeleteCryptoForm($this->dbService, $this->client);
         $form = $this->createForm(DeleteCryptoForm::class, $deleteForm, [
             'action' => $this->generateUrl('crypto.delete'),
@@ -160,9 +175,11 @@ class CryptoController extends AbstractController
                 $form->get('quantity')->getData(),
                 $form->get('price')->getData()
             );
+            $validMessage = 'Votre devise a bien été supprimée';
         }
         return $this->render('/crypto/deleteCrypto.html.twig',[
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'valid_message' => $validMessage
         ]);
     }
 

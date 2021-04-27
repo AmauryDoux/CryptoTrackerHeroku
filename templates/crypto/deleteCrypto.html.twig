@@ -33,4 +33,10 @@
     {{ form_widget(form.submit) }}
 </div>
 {{ form_end(form) }}
+    <span id="valid_message" style="color:green;">{{ valid_message }}</span>
+{% endblock %}
+{% block javascripts %}
+    <script>
+        setTimeout(function(){ document.getElementById("valid_message").style.visibility = "hidden"; }, 3000);
+    </script>
 {% endblock %}

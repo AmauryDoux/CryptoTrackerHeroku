@@ -2,10 +2,8 @@
 
 namespace App\Services;
 
-use App\Entity\Crypto;
 use App\Entity\Historic;
 use App\Entity\Order;
-use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 
 class DatabaseService
@@ -50,7 +48,6 @@ class DatabaseService
             ];
         }
         return  $cryptos;
-        // $this->entityManager->getRepository(Order::class)->findAll();
     }
 
     /**
@@ -59,7 +56,6 @@ class DatabaseService
     public function getOrdersByCryptoId($id)
     {
         return $this->entityManager->getRepository(Order::class)->findBy(['crypto_id' => $id]);
-        // $this->entityManager->getRepository(Order::class)->findAll();
     }
 
     /** 
@@ -90,7 +86,6 @@ class DatabaseService
         $this->entityManager->flush();
     }
 
-
     /** 
      * 
      */
@@ -102,6 +97,24 @@ class DatabaseService
 
         $this->entityManager->persist($order);
         $this->entityManager->flush();
+    }
+    
+    /** 
+     * 
+     */
+    public function getAllHistoryEntry() 
+    {
+        $data = [];
+        $allHistoric =  $this->entityManager->getRepository(Historic::class)->findAll();
+
+        foreach($allHistoric as $historic) {
+            $data[] = [
+                'id' => $historic->getId(),
+                'balance' => $historic->getBalance(),
+                'date' => $historic->getDate()
+            ];
+        }
+        return $data;
     }
 }
 
